@@ -4,5 +4,5 @@
   <?define ApplicationVersion = "0.10.0" ?>
   <?endif?>
   <?define ApplicationName = "DEXBot" ?>
-  <?define Manufacturer = "Bitshares" ?>
+  <?define Manufacturer = "Graphene" ?>
 </Include>

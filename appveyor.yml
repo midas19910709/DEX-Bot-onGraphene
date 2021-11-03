@@ -12,12 +12,13 @@ environment:
 #---------------------------------#
 
 install:
-  - ps: Start-FileDownload 'https://www.python.org/ftp/python/3.6.6/python-3.6.6-amd64.exe'
-  - copy python-3.6.6-amd64.exe installer\windows\bundle\prerequisites\python-3.6.6.exe
+  - ps: Start-FileDownload 'https://www.python.org/ftp/python/3.6.8/python-3.6.8-amd64.exe'
+  - copy python-3.6.8-amd64.exe installer\windows\bundle\prerequisites\python-3.6.8.exe
   - SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%;C:\MinGW\bin
   - copy c:\MinGW\bin\mingw32-make.exe c:\MinGW\bin\make.exe
   - copy c:\Python36-x64\python.exe c:\Python36-x64\python3.exe
   - python --version
+  - python3 -m pip install --upgrade pip
   - make install
   - make package
   - copy /Y dist\DEXBot-gui.exe installer\windows\msi\DEXBot.exe
@@ -58,11 +59,11 @@ clone_depth: 1
 
 deploy:
   - provider: GitHub
-    draft: false
+    draft: true
     prerelease: false
     force_update: true
     auth_token:
-      secure: 9qvwlVUHFBV4GwMz1Gu2HSnqU8Ex2nv5dsY4mVNCurrb+6ULIoHPgbvJPWTo3qV6
+      secure: FclZCFdQUXRI1M8zSdKMTaKd45ZsQ8J4NhpYmMGOBG6kZ14init5b1WmyRajBuFD
     on:
       appveyor_repo_tag: true     # Deploy on tag push only
 
@@ -70,8 +71,8 @@ deploy:
 #         Notifications           #
 #---------------------------------#
 
-notifications:
-  - provider: Slack
-    auth_token:
-      secure: G9OMj9l2s3+lX8cRiNXXhuQJpnnjcBc0cqP8gzkdKVWqGA8vBTOIPGxD/536VKpeBH/5dJFQWT+vmnGS+XciaCg4hh5s6hDpnvePq2+uEYE=
-    channel: '#ci'
+#notifications:
+#  - provider: Slack
+#    auth_token:
+#      secure: G9OMj9l2s3+lX8cRiNXXhuQJpnnjcBc0cqP8gzkdKVWqGA8vBTOIPGxD/536VKpeBH/5dJFQWT+vmnGS+XciaCg4hh5s6hDpnvePq2+uEYE=
+#    channel: '#ci'

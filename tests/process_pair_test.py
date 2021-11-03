@@ -30,18 +30,18 @@ def test_split_symbol():
 
 def test_filters():
     test_symbols = [
-        'USDT',
-        'bridge.USD',
-        'Rudex.USD',
-        'open.USD',
-        'GDEX.USD',
-        'Spark.USD',
-        'bridge.BTC',
-        'BTC',
-        'LTC',
-        'bitUSD',
-        'bitEUR',
-        'bitHKD',
+        #'USDT',
+        #'bridge.USD',
+        'RUDEX.USDT',
+        #'open.USD',
+        #'GDEX.USD',
+        #'Spark.USD',
+        #'bridge.BTC',
+        #'BTC',
+        #'LTC',
+        'gpUSD',
+        #'gpEUR',
+        #'gpHKD',
     ]
     print("Test Symbols", test_symbols, sep=":")
     r = [filter_prefix_symbol(i) for i in test_symbols]

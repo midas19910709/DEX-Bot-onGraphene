@@ -10,7 +10,7 @@
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowDowngrades="no" Schedule="afterInstallExecute"  />
     <MediaTemplate EmbedCab="yes" />
-    <Feature Id="ProductFeature" Title="BitsharesInstallView" Level="1">
+    <Feature Id="ProductFeature" Title="GrapheneInstallView" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="ApplicationShortcut" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
@@ -27,7 +27,7 @@
           <Shortcut
               Id="ApplicationDesktopShortcut"
               Name="DEXBot"
-              Description="Bitshares DEXBot"
+              Description="Graphene DEXBot"
               Target="[INSTALLDIR]\DEXBot.exe"
               WorkingDirectory="INSTALLDIR" Icon="ProductIcon">
             <Icon Id="ProductIcon" SourceFile="assets\dexbot-icon.ico" />
@@ -46,7 +46,7 @@
 
       <!-- Begin program files entry-->
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="APPLICATIONFOLDER" Name="Bitshares">
+        <Directory Id="APPLICATIONFOLDER" Name="Graphene">
           <Directory Id="INSTALLDIR" Name="$(var.ApplicationName)" >
           </Directory>
         </Directory>
@@ -55,7 +55,7 @@
 
       <!-- Begin start menu entry -->
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="Bitshares"/>
+        <Directory Id="ApplicationProgramsFolder" Name="Graphene"/>
       </Directory>
     </Directory>
 
@@ -63,11 +63,11 @@
       <Component Id="ApplicationShortcut" Guid="1BFD9CC9-8208-49C1-AB8D-3DC2B7877792">
         <Shortcut Id="ApplicationStartMenuShortcut"
                   Name="DEXBot"
-                  Description="Bitshares DEXBot"
+                  Description="Graphene DEXBot"
                   Target="[INSTALLDIR]\DEXBot.exe"
                   WorkingDirectory="INSTALLDIR"/>
         <RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall"/>
-        <RegistryValue Root="HKCU" Key="Software\Bitshares\DEXBot" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        <RegistryValue Root="HKCU" Key="Software\Graphene\DEXBot" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
     <!-- End start menu entry-->

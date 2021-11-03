@@ -29,7 +29,7 @@ def test_get_default_db_file(storage):
 
 
 def test_fetch_orders(storage):
-    order = {'id': '111', 'base': '10 CNY', 'quote': '1 BTS'}
+    order = {'id': '111', 'base': '10 USD', 'quote': '1 GPH'}
     storage.save_order(order)
     fetched = storage.fetch_orders()
     # Return value is dict {'id': 'order'}
@@ -37,7 +37,7 @@ def test_fetch_orders(storage):
 
 
 def test_fetch_orders_extended(storage):
-    order = {'id': '111', 'base': '10 CNY', 'quote': '1 BTS'}
+    order = {'id': '111', 'base': '10 USD', 'quote': '1 GPH'}
     text = 'foo bar'
     storage.save_order_extended(order, virtual=True, custom=text)
 
@@ -59,7 +59,7 @@ def test_fetch_orders_extended(storage):
 
 
 def test_clear_orders(storage):
-    order = {'id': '111', 'base': '10 CNY', 'quote': '1 BTS'}
+    order = {'id': '111', 'base': '10 USD', 'quote': '1 GPH'}
     storage.save_order(order)
     storage.clear_orders()
     fetched = storage.fetch_orders()
@@ -67,7 +67,7 @@ def test_clear_orders(storage):
 
 
 def test_clear_orders_extended(storage):
-    order = {'id': '111', 'base': '10 CNY', 'quote': '1 BTS'}
+    order = {'id': '111', 'base': '10 USD', 'quote': '1 GPH'}
     storage.save_order_extended(order, virtual=True)
     storage.clear_orders_extended(only_virtual=True)
     fetched = storage.fetch_orders_extended()
@@ -80,14 +80,14 @@ def test_clear_orders_extended(storage):
 
 
 def test_remove_order(storage):
-    order = {'id': '111', 'base': '10 CNY', 'quote': '1 BTS'}
+    order = {'id': '111', 'base': '10 USD', 'quote': '1 GPH'}
     storage.save_order(order)
     storage.remove_order(order)
     assert storage.fetch_orders() is None
 
 
 def test_remove_order_by_id(storage):
-    order = {'id': '111', 'base': '10 CNY', 'quote': '1 BTS'}
+    order = {'id': '111', 'base': '10 USD', 'quote': '1 GPH'}
     storage.save_order(order)
     storage.remove_order(order['id'])
     assert storage.fetch_orders() is None

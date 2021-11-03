@@ -1,6 +1,4 @@
 sudo: true
-services:
-  - docker
 matrix:
   include:
   - os: linux
@@ -13,21 +11,10 @@ matrix:
     python: '3.7'
     before_install:
       - python3 --version
-before_install:
-  # Make sure docker image can be built
-  - docker build -t dexbot/dexbot .
-  - docker pull bitshares/bitshares-core:testnet
 install:
+  - python3 -m pip install --upgrade pip
   - pip install --upgrade setuptools
   - make install
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then python3 -m pip install -r requirements-dev.txt ; fi
-before_script:
-  # PEP8 linting
-  - make pep-test
-  - echo "Running mandatory tests..."
-  # Travis on mac doesn't support docker
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then pytest -m mandatory tests/ &&
-      python3 -m pip uninstall -y -r requirements-dev.txt; fi
 script:
   - pip install pyinstaller
   - pyinstaller --distpath dist/$TRAVIS_OS_NAME gui.spec
@@ -39,13 +26,11 @@ before_deploy:
 deploy:
   - provider: releases
     skip_cleanup: true
+    body: Automated release from Travis CI with added files from AppVeyor build
     api_key:
-      secure: YHAPA2G3qu7at2hMu4AplXH/niI1ChlgldJVetaKO92iDQiyOk5VqFfhV1ec+nYdX8rtniwfD7YJr2nG2x1ATwKw4MyFcJEXqaOUmKWTeZ/Q3PnQQsa+2BnN4Rfz1aynpsKHDYS9gCU/YTqymujE8bdlxW1WtpYOqOSDkspGxZGZTiUKQ7/qhrjB3Dywm/KF9WEoba/X7tbhmSuU8sL45gBGY008TXZRWqAPM42qa/aBIrG/cIA865VlCUltPC6vzskcWI5q1UtYh6g2CiXJghcpFEO2rWWXmS1A+5nQp6ptJigjRgnhyFHmHb27lRM8aRGRDTeyJvlNuoyIvNj/FxhLXZvomgTyGyzTIl67WIXcxWMKx6KqqrqGyiooRMeFpDEYobZL/FY9whi3M+gUwsofAVQ6oL4a1L185egaXlMKGbM5GYB4OxVLsVtL2c0pJjvNIkCGGDzaqNpdo+vZflB4iCwvw548rWJsqsHnP1XMo28ZU86hibD7V0x+JW2BJEI0lMvOkRBslOhYBafIsbZakO4Zf4d+5b2dd8/xY/wTbuxwgDuBOmpqoByVYeCBah4bbnb8JS6eze+vUyxaI1XLAdQXbLQ788Agr2jdHGuy1wI8io9g5vtzS5oOyq8YFBM1tVKM2Mtw5nkSsTbPJsZg8m/kkre6qiXJl2gPQTE=
+      secure: aVRcq/JDh7HoGcDrjZoKWaGZr1Ie7hxzxzYGNqb8p7F7rWuTSanlEZRQ+4mq2lAFq+ase9lycyZXu1KFKSf7iEGBeqMudMOVVc2j87sQEH7MKKX/bZrapvw4mxvu+kGJQXpNI70tB6hJmVvNtZpleqsiFs0i2R2pAnVvmVajxfxoXrmz68oS172HGdQ2RzuPE7fjvK8JclJ10jd1dfD82XEo6GkX9TqDe2NhaMZvf/ROKhSC35C2DnTKWuSAI7zGcX8GbcSqlskCJYdDv5fgE2banUDuzJuT4TmsEvfIMa7+xnaDStBq7zxEiLPNq0wTZEbrdY9jV/IhWKjOFaI58LGHOedA4dvUKiMuXF4FtBjhUC4UGNwn9g0wZU/q/GtiyRzRXgQ9JYCfM5r1UDkh+4xm2VB7NQ1NoA7ajidamqBamRmHdh0wZI6NwtKYPjGEX1QUBNlt3HXvpLU26j39gjMcduj8kiFh05RlWq41EgbQAPMR1256nw9yGRrnTA7M9QEfmjNvpb4CT1FWmBDtkALzskLSZOts4iZ6vQvWGZkntd7IeZ9Rr4ImX99vZIwYWNL9n6VJW75VlwF/E0Uxqxs8WkYUDFayfySxADpVwkmiR9d3cahzu9UbqVHzH8a0Uvko9TxIHhTjep/ER5dXu2cSObdTqKRp1FRQksI8/Oo=
     file: dist/*.tar.gz
     file_glob: true
+    draft: true
     on:
       tags: true
-notifications:
-  email: false
-  slack:
-    secure: iQwBqvwq0HmEODoWI52pnNi2trfZ4ly5/fDPmkr6Ez8z9rm5XQ3CBLtpH7JpNdkyen5r+dVTczJDIOTBLpXwe/AzwFKLqZc/0pkXnxzNSENnm++/G6uqS0u5fMdYSoR4fJC1zjzEj2ly11OdS+wX3y9//hD13U96u3iO6T/7EXU2VYt82wekziJXzyfK4JeJMs1L5M2Oz7ZBwiHeAZ/3ZNjKE+9TX7S/mlmG+bNiQhv/wSin2AnsB1recgFjp17ZHq4cW+K77TDnRlPZ0bVsOhGYUtMlW9llidXZbunLj3qITIDl7dufowBG95PTHh+L2KDcPv7UCxlN02kXWuz3nL47UwD7BZcLMJ0RLYk4g+qNBrytgrmhH82gdmenzCQ4PgHI/U1/8hgiEyGlBZWUTXrso5EF3VBRUhCtu8dG/F+rdGHSfK1mZQyDPe6my9E888TvfcWWCpVNammAZicrGWU9nY3Rqn7DFodBL896iFPs1DJD5fTF1th6hHEyRSuKZC80irFZRoxccDPuDYVIfPExJH328tFeh75WOuzQt4QCBFiOsiFDlCYhnQ8tNw/MWntPQHwY8PkUlvpvelPCgfh73ihXtMD61/6Hq+lOijkGFhEzgpqmzL4mSUd/EQRJHLE9lAVvRGdrzlaIV6f4CirJkZSAgf4LuYDl2JMZ3kE=

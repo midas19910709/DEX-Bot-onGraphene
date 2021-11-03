@@ -7,7 +7,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 You can have a look into the source code on Github.
-https://github.com/Codaone/DEXBot/
+https://github.com/graphene-blockchain/DEXBot/
 
 If you have any trouble using DEXBot, please visit our telegram chat room or contact us via our website.
 

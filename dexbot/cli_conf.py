@@ -294,9 +294,9 @@ def configure_dexbot(config, ctx):
                     ('NEW', 'Create a new worker'),
                     ('EDIT', 'Edit a worker'),
                     ('DEL_WORKER', 'Delete a worker'),
-                    ('ADD', 'Add a bitshares account'),
-                    ('DEL_ACCOUNT', 'Delete a bitshares account'),
-                    ('SHOW', 'Show bitshares accounts'),
+                    ('ADD', 'Add a graphene account'),
+                    ('DEL_ACCOUNT', 'Delete a graphene account'),
+                    ('SHOW', 'Show graphene accounts'),
                     ('NODES', 'Edit Node Selection'),
                     ('ADD_NODE', 'Add Your Node'),
                     ('SORT_NODES', 'By latency (uses default list)'),
@@ -358,11 +358,11 @@ def configure_dexbot(config, ctx):
             elif action == 'SHOW':
                 account_list = list_accounts(bitshares_instance)
                 if account_list:
-                    action = whiptail.menu("Bitshares Account List (Name - Type)", account_list)
+                    action = whiptail.menu("Graphene Account List (Name - Type)", account_list)
                 else:
-                    whiptail.alert('You do not have any bitshares accounts in the wallet')
+                    whiptail.alert('You do not have any graphene accounts in the wallet')
             elif action == 'ADD_NODE':
-                txt = whiptail.prompt("Your name for the new node: e.g. wss://dexnode.net/ws")
+                txt = whiptail.prompt("Your name for the new node: e.g. wss://node.gph.ai")
                 # Insert new node on top of the list
                 config['node'].insert(0, txt)
             elif action == 'NODES':
@@ -387,7 +387,7 @@ def configure_dexbot(config, ctx):
                 # delete node permanently from config
                 setup_systemd(whiptail, config)
             elif action == 'HELP':
-                whiptail.alert("Please see https://github.com/Codaone/DEXBot/wiki")
+                whiptail.alert("Please see https://github.com/graphene-blockchain/DEXBot/wiki")
 
     whiptail.clear()
     return config

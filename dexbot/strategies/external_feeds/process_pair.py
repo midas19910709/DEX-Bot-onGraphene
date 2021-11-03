@@ -13,7 +13,7 @@ def print_args(*args):
 
 
 def filter_prefix_symbol(symbol):
-    # Example open.USD or bridge.USD, remove leading bit up to .
+    # Example open.USD or bridge.USD, remove leading gp up to .
     base = ''
     if re.match(r'^[a-zA-Z](.*)\.(.*)', symbol):
         base = re.sub(r'(.*)\.', '', symbol)
@@ -23,10 +23,10 @@ def filter_prefix_symbol(symbol):
 
 
 def filter_bit_symbol(symbol):
-    # if matches bitUSD or bitusd any bit prefix, strip
+    # if matches gpUSD or gpusd any gp prefix, strip
     base = ''
-    if re.match(r'bit[a-zA-Z]{3}', symbol):
-        base = re.sub("bit", "", symbol)
+    if re.match(r'gp[a-zA-Z]{3}', symbol):
+        base = re.sub("gp", "", symbol)
     else:
         base = symbol
     return base

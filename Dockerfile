@@ -36,6 +36,7 @@ WORKDIR $SRC_PATH
 
 # Install dependencies in separate stage to speed up further builds
 COPY requirements.txt $SRC_PATH/
+RUN python3 -m pip install -U pip
 RUN python3 -m pip install --user -r requirements.txt
 
 # Copy project files

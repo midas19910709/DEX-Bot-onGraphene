@@ -26,12 +26,12 @@
       <Variable Name="DefaultAllUsersTargetDir" Value="[ProgramFilesFolder]Python[WinVerNoDot]" bal:Overridable="yes" />
       <Variable Name="TargetPlatform" Value="x86" />
     <?endif ?>
-    <Variable Name="LaunchTarget" Value="[ProgramFilesFolder]\Bitshares\DEXBot\DEXBot.exe"/>
+    <Variable Name="LaunchTarget" Value="[ProgramFilesFolder]\Graphene\DEXBot\DEXBot.exe"/>
 
     <Chain>
 
       <ExePackage Id="Python"
-                  SourceFile="prerequisites\python-3.6.6.exe"
+                  SourceFile="prerequisites\python-3.6.8.exe"
                   Cache="yes"
                   Compressed="yes"
                   Permanent="yes"

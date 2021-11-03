@@ -1,18 +1,17 @@
 # DEXBot
 
-[![Build Status (master)](https://travis-ci.org/Codaone/DEXBot.svg?branch=master)](https://travis-ci.org/Codaone/DEXBot)
+[![Build Status (master)](https://travis-ci.org/graphene-blockchain/DEXBot.svg?branch=graphene)](https://travis-ci.org/graphene-blockchain/DEXBot)
 [![Documentation
 Status](https://readthedocs.org/projects/dexbot/badge/?version=latest)](https://dexbot.readthedocs.io/en/latest/?badge=latest)
 
-**Download the latest release for Windows, OSX and Linux from [here!](https://github.com/Codaone/DEXBot/releases/latest)**
+**Download the latest release for Windows, OSX and Linux from [here!](https://github.com/graphene-blockchain/DEXBot/releases/latest)**
 
-The Dashboard of the GUI version of DEXBot: ![GUI](https://i.imgur.com/rW8XKQ4.png)
+The Dashboard of the GUI version of DEXBot: ![GUI](https://i.imgur.com/dc2FYum.png)
 
-The CLI version of DEXBot in configuration dialog: ![CLI](https://i.imgur.com/H1N96nI.png)
+The CLI version of DEXBot in configuration dialog: ![CLI](https://i.imgur.com/RUSv92q.png)
 
-A Trading Bot provided with two very flexible Market Making strategies. Works on "vanilla" BitShares and all exchanges built upon it. Can be customized with additional strategies written in Python3.
+A Trading Bot provided with two very flexible Market Making strategies. Works on "vanilla" Graphene and all exchanges built upon it. Can be customized with additional strategies written in Python3.
 
-DEXBot was paid for by the BitShares blockchain (by means of a Worker Proposal), and managed by "The Cabinet", consisting of 6 active BitShares community members. All spending was controlled by an account which requires 3/5 approvals (multisig scheme).
 
 DEXBot can be installed from source or by using the excecutable packages for Windows, OSX, and Linux. Packages include the GUI version, but installation from source provides also the CLI version, which can be used on headless servers and Raspberry Pi's.
 
@@ -26,7 +25,7 @@ If you properly predict future market conditions, you can manage to make profit.
 
 ## Installing and running the software
 
-See instructions in the [Wiki](https://github.com/Codaone/DEXBot/wiki) for [Linux](https://github.com/Codaone/DEXBot/wiki/Setup-Guide-for-Linux), [Windows](https://github.com/Codaone/DEXBot/wiki/Setup-Guide-for-Windows), [OSX](https://github.com/Codaone/DEXBot/wiki/Setup-Guide-for-Mac-OS-X). [Raspberry Pi](https://github.com/Codaone/DEXBot/wiki/Setup-guide-for-Raspberry-Pi). Other users can try downloading the package or following the Linux guide.
+See instructions in the [Wiki](https://github.com/graphene-blockchain/DEXBot/wiki) for [Linux](https://github.com/graphene-blockchain/DEXBot/wiki/Setup-Guide-for-Linux), [Windows](https://github.com/graphene-blockchain/DEXBot/wiki/Setup-Guide-for-Windows), [OSX](https://github.com/graphene-blockchain/DEXBot/wiki/Setup-Guide-for-Mac-OS-X). [Raspberry Pi](https://github.com/graphene-blockchain/DEXBot/wiki/Setup-guide-for-Raspberry-Pi). Other users can try downloading the package or following the Linux guide.
 
 **Warning**: This is highly experimental code! Use at your OWN risk!
 
@@ -37,26 +36,26 @@ directories inside the container as shown below.
 
 ```
 mkdir dexbot-data dexbot-config
-docker run -it --rm -v `pwd`/dexbot-data:/home/dexbot/.local/share dexbot/dexbot:latest uptick addkey
-docker run -it --rm -v `pwd`/dexbot-config:/home/dexbot/.config/dexbot -v `pwd`/dexbot-data:/home/dexbot/.local/share dexbot/dexbot:latest dexbot-cli configure
+docker run -it --rm -v `pwd`/dexbot-data:/home/dexbot/.local/share blckchnd/dexbot:latest uptick addkey
+docker run -it --rm -v `pwd`/dexbot-config:/home/dexbot/.config/dexbot -v `pwd`/dexbot-data:/home/dexbot/.local/share blckchnd/dexbot:latest dexbot-cli configure
 ```
 
 To run in unattended mode you need to provide wallet passphrase:
 
 ```
-docker run -d --name dexbot -e UNLOCK=pass -v `pwd`/dexbot-config:/home/dexbot/.config/dexbot -v `pwd`/dexbot-data:/home/dexbot/.local/share dexbot/dexbot:latest dexbot-cli run
+docker run -d --name dexbot -e UNLOCK=pass -v `pwd`/dexbot-config:/home/dexbot/.config/dexbot -v `pwd`/dexbot-data:/home/dexbot/.local/share blckchnd/dexbot:latest dexbot-cli run
 ```
 
 Assuming you have created a Docker secret named "passphrase" in your swarm, you can also get it from there:
 
 ```
 printf <pass> | docker secret create passphrase -
-docker run -d --name dexbot -e UNLOCK=/run/secrets/passphrase -v `pwd`/dexbot-config:/home/dexbot/.config/dexbot -v `pwd`/dexbot-data:/home/dexbot/.local/share dexbot/dexbot:latest dexbot-cli run
+docker run -d --name dexbot -e UNLOCK=/run/secrets/passphrase -v `pwd`/dexbot-config:/home/dexbot/.config/dexbot -v `pwd`/dexbot-data:/home/dexbot/.local/share blckchnd/dexbot:latest dexbot-cli run
 ```
 
 ## Getting help
 
-Join the [Telegram Chat for DEXBot](https://t.me/DEXBOTbts).
+Join the [Telegram Chat for DEXBot Graphene](https://t.me/graphene_dex).
 
 ## Contributing
 
@@ -69,8 +68,8 @@ pip install -r requirements-dev.txt
 pre-commit install
 ```
 
-* [New Contributors Guide](https://github.com/Codaone/DEXBot/wiki/New-Contributors-Guide)
-* [Git Workflow](https://github.com/Codaone/DEXBot/wiki/Git-Workflow)
+* [New Contributors Guide](https://github.com/graphene-blockchain/DEXBot/wiki/New-Contributors-Guide)
+* [Git Workflow](https://github.com/graphene-blockchain/DEXBot/wiki/Git-Workflow)
 
 # IMPORTANT NOTE
 

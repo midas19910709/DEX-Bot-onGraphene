@@ -375,7 +375,7 @@
          </size>
         </property>
         <property name="text">
-         <string>BTS</string>
+         <string>GPH</string>
         </property>
        </widget>
       </item>
@@ -659,7 +659,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Bitshares Account Details</string>
+      <string>Graphene Account Details</string>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
       <property name="rowWrapPolicy">

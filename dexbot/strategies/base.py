@@ -144,7 +144,9 @@ class StrategyBase(BitsharesOrderEngine, BitsharesPriceFeed):
 
         :param worker_name: Name of the worker to be removed
         """
-        Storage.clear_worker_data(worker_name)
+        storage = Storage(worker_name)
+        storage.clear_worker_data()
+        #Storage.clear_worker_data(storage)
 
     @classmethod
     def configure(cls, return_base_config=True):
